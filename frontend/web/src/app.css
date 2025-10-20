@@ -1,0 +1,494 @@
+/* App.css */
+:root {
+  --primary-color: #0077cc;
+  --secondary-color: #ff9500;
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+  --card-bg: #2a2a2a;
+  --border-color: #444;
+  --pixel-border: 2px solid #000;
+}
+
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  image-rendering: pixelated;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-bottom: var(--pixel-border);
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.logo h1 span {
+  color: var(--secondary-color);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.welcome-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--primary-color);
+  border: var(--pixel-border);
+}
+
+.welcome-text h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.fhe-badge {
+  padding: 0.5rem;
+  background-color: var(--secondary-color);
+  color: #000;
+  font-weight: bold;
+  border: var(--pixel-border);
+}
+
+.dashboard-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pixel-card {
+  background-color: var(--card-bg);
+  border: var(--pixel-border);
+  padding: 1rem;
+  position: relative;
+}
+
+.pixel-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: var(--pixel-border);
+  pointer-events: none;
+}
+
+.project-intro p {
+  line-height: 1.5;
+}
+
+.fhe-process {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.process-step {
+  text-align: center;
+  flex: 1;
+}
+
+.step-icon {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--secondary-color);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem;
+  border: var(--pixel-border);
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: var(--pixel-border);
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+}
+
+.games-section {
+  margin-top: 1rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.game-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.game-item:hover {
+  transform: translateY(-2px);
+}
+
+.game-id {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.game-owner, .game-date {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.game-generation {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.mini-grid {
+  position: relative;
+  height: 80px;
+  width: 80px;
+  margin: 0 auto;
+}
+
+.cell {
+  position: absolute;
+  background-color: #333;
+  border: 1px solid #222;
+}
+
+.cell.alive {
+  background-color: var(--secondary-color);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.create-modal, .game-detail-modal {
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: var(--pixel-border);
+  padding-bottom: 0.5rem;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.grid-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.game-grid-container {
+  margin: 1rem 0;
+  overflow: auto;
+}
+
+.game-grid {
+  position: relative;
+  height: 400px;
+  width: 400px;
+  margin: 0 auto;
+  background-color: #222;
+  border: var(--pixel-border);
+}
+
+.fhe-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 119, 204, 0.2);
+  border: var(--pixel-border);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-top: var(--pixel-border);
+  padding-top: 1rem;
+}
+
+.game-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.info-item span {
+  display: block;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.game-controls {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.game-display {
+  height: 400px;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
+.fhe-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 149, 0, 0.2);
+  border: var(--pixel-border);
+}
+
+.pixel-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: var(--pixel-border);
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  position: relative;
+}
+
+.pixel-button:hover {
+  background-color: #333;
+}
+
+.pixel-button.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.pixel-button.primary:hover {
+  background-color: #0066aa;
+}
+
+.pixel-select {
+  padding: 0.5rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: var(--pixel-border);
+  font-family: 'Courier New', monospace;
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.pixel-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--secondary-color);
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.transaction-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.transaction-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.transaction-icon {
+  margin-bottom: 1rem;
+}
+
+.check-icon {
+  color: green;
+  font-size: 2rem;
+}
+
+.error-icon {
+  color: red;
+  font-size: 2rem;
+}
+
+.app-footer {
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-top: var(--pixel-border);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-link {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.no-games {
+  text-align: center;
+  padding: 2rem;
+}
+
+.no-games-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  background-color: #333;
+  border: var(--pixel-border);
+  position: relative;
+}
+
+.no-games-icon::before, .no-games-icon::after {
+  content: '';
+  position: absolute;
+  background-color: #666;
+}
+
+.no-games-icon::before {
+  width: 40px;
+  height: 4px;
+  top: 28px;
+  left: 10px;
+}
+
+.no-games-icon::after {
+  width: 4px;
+  height: 40px;
+  left: 28px;
+  top: 10px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .game-grid {
+    width: 300px;
+    height: 300px;
+  }
+}
